@@ -24,3 +24,9 @@ class ProductConfig(Config):
 
 class DevelopmentConfig(Config):
     DEBUG = True
+
+
+config_dict = {
+    'develop':DevelopmentConfig,
+    'product':ProductConfig,
+}
