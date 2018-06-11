@@ -1,10 +1,23 @@
-import logging
-from logging.handlers import RotatingFileHandler
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
+from info import app,db
 
-logging.basicConfig(level=logging.DEBUG)
-file_log_handler = RotatingFileHandler('logs/log',maxBytes=1024*1024*100,backupCount=10)
-formatter = logging.Formatter('%(levelname)s %(filename)s:%(lineno)d %(message)s')
-file_log_handler.setFormatter(formatter)
-logging.getLogger().addHandler(file_log_handler)
 
-logging.debug('this is a debug log')
+
+
+
+
+
+
+
+# 配置flask_script,数据库迁移
+manager = Manager(app)
+Migrate(app, db)
+manager.add_command('db', MigrateCommand)
+
+@app.route('/index')
+def index():
+    return 'hello'
+
+if __name__ == '__main__':
+    manager.run()
