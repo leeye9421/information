@@ -159,7 +159,7 @@ def login():
         return jsonify(errno=RET.NODATA, errmsg='该用户不存在')
     # 5.判断密码是否正确
     if not user.check_passowrd(password):
-        return jsonify(errno=RET.DATAERR, errmsg='密码输入错误')
+        return jsonify(errno=RET.PWDERR, errmsg='密码输入错误')
     # 6.记录用户的登陆状态
     session['user_id'] = user.id
     session['nick_name'] = user.nick_name
