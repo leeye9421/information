@@ -168,3 +168,13 @@ def login():
     user.last_login = datetime.now()
     # 7.返回前端页面
     return jsonify(errno=RET.OK, errmsg='登陆成功')
+
+
+# 登出功能
+@passport_blu.route('/logout',methods=['POST'])
+def logout():
+    session.pop('user_id',None)
+    session.pop('nick_name',None)
+    session.pop('mobile',None)
+
+    return jsonify(errno=RET.OK,errmsg="ok")
